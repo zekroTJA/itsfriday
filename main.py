@@ -28,18 +28,19 @@ def init() -> int:
             "Open this config at '%s' and enter your values." % args.config) 
         return 1
 
-    # try:
-    #     twc = twrapper.Twitter(cfg.get("twitter"))
-    # except twitter.TwitterError as e:
-    #     logging.critical("Failed creating twitter session: %s" % e.message)
+    try:
+        twc = twrapper.Twitter(cfg.get("twitter"))
+    except twitter.TwitterError as e:
+        logging.critical("Failed creating twitter session: %s" % e.message)
+        return 1
 
-    # twc.update("Hey, das ist nur ein API test ;) Bitte ignorieren ^^", "http://ih1.redbubble.net/image.151611002.9466/flat,800x800,075,f.jpg")
-    # mgr = fmgr.FileManager(cfg.get("image_files").val())
-    # print(mgr.get_rnd_file())
+    mgr = fmgr.FileManager(cfg.get("image_files").val())
 
     def handler():
-        print("TEST")
+        file = mgr.get_rnd_file()
+        twc.update("👌", file)
 
+    logging.info("Starting timer...")
     t = timer.Timer(4, cfg.get("time").val(), handler)
     t.start_blocking()
 
