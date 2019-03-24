@@ -3,6 +3,7 @@ from os import path
 
 
 _DEFAULT_CONF = {
+    'time': '9:00:00',
     'twitter': {
         'consumer_key': '',
         'consumer_secret': '',
