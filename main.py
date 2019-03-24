@@ -39,9 +39,17 @@ def init() -> int:
     mgr = fmgr.FileManager(cfg.get("image_files").val())
 
     def handler():
-        file = mgr.get_rnd_file()
-        twc.update("👌", file)
+        try:
+            file = mgr.get_rnd_file()
+            twc.update("👌", file)
+            return 0
+        except Exception as e:
+            logging.error("tweeting failed: " + e)
+            return 1
 
+    if args.cron:
+        return(handler())
+    
     logging.info("Starting timer...")
     t = timer.Timer(4, cfg.get("time").val(), handler)
     t.start_blocking()
