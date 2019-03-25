@@ -1,8 +1,15 @@
 {
-    "twitter": {
-        "consumer_key": "",
-        "consumer_secret": "",
-        "access_token_key": "",
-        "access_token_secret": ""
-    }
+  "time": "9:00:00",
+  "message": "\ud83d\udc4c",
+  "twitter": {
+    "consumer_key": "",
+    "consumer_secret": "",
+    "access_token_key": "",
+    "access_token_secret": ""
+  },
+  "image_files": [
+    "https://example.com/myimagefile.png",
+    "/home/you/icon.png",
+    "/home/you/img"
+  ]
 }
