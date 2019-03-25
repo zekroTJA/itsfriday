@@ -3,7 +3,7 @@ import re
 from random import randint
 
 
-_RE_URL = re.compile('https?:\/\/(www\.)?[\w\-\.]+\.\w{1,8}(:\d{1,5})?.*')
+_RE_URL = re.compile(r'https?:\/\/(www\.)?[\w-\.]+\.\w{1,8}(:\d{1,5})?.*')
 
 
 class FileManager:
