@@ -1,9 +1,10 @@
 import json
 from os import path
-
+from enum import Enum
 
 _DEFAULT_CONF = {
     'time': '9:00:00',
+    'message': '👌',
     'twitter': {
         'consumer_key': '',
         'consumer_secret': '',

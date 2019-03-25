@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://cloud.zekro.de/apps/files_sharing/publicpreview/gjyy7LZ8Qe3kqzA?x=1903&y=604&a=true&file=itsfriday1.jpg" height="300" />
+    <img src="data/testfiles/itsfriday1.jpg" height="300" />
     <h1>~ It's Friday! ~</h1>
     <strong>
         The tool for spreading friday-happiness to your Twitter followers!
@@ -32,3 +32,8 @@ Then, you can define a time when a randomly picked image out of the defined pool
 
 First of all, you need to [**create a Twitter API application**](https://developer.twitter.com/en/apps/create) to connect the tool to your account.
 
+Then, clone this repository to your system and cd into the directory:
+
+```
+$ git clone https://github.com/zekroTJA/itsfriday --branch master --depth 1
+```
