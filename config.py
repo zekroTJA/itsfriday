@@ -13,8 +13,8 @@ _DEFAULT_CONF = {
     },
     'image_files': [
         "https://example.com/myimagefile.png",
-        "/home/zekro/icon.png",
-        "/home/zekro/img"
+        "/home/you/icon.png",
+        "/home/you/img"
     ]
 }
 

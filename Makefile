@@ -1,6 +1,6 @@
-PY = py -3.7 # for windows - ensure python version 3.7 
+# PY = py -3.7 # for windows - ensure python version 3.7 
 # PY = python3   # for linux
-# PY = python3.7 # for linux - ensure python version 3.7
+PY = python3.7 # for linux - ensure python version 3.7
 # PY = python3.8 # for linux - ensure python version 3.8
 
 CONFIG = "$(CURDIR)/config.json"
