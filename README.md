@@ -92,8 +92,8 @@ For that, create a start script which can be used as single executable to start 
 > start.sh
 ```bash
 #!/bin/bash
-REPO="/path/to"
-python3 ${REPO}/itsfriday/main.py -c ${REPO}/myConfig.json
+REPO="/path/to/itsfriday"
+python3 ${REPO}/main.py -c ${REPO}/myConfig.json
 ```
 
 Dont forget to make the script executable after!
@@ -135,13 +135,16 @@ It is very important to set the flag **`--once`**, which will not start the time
 
 | Dependency | Licence |
 |------------|---------|
-| [bear/python-twitter](https://github.com/bear/python-twitter) | [Apache V2](https://github.com/bear/python-twitter/blob/master/LICENSE) |
+| [kennethreitz/requests](https://github.com/kennethreitz/requests) | [Apache V2.0](https://github.com/kennethreitz/requests/blob/master/LICENSE) |
+| [requests/requests-oauthlib](https://github.com/requests/requests-oauthlib) | [ISC](https://github.com/requests/requests-oauthlib/blob/master/LICENSE) |
 
 ---
 
 # Ideas and To-Do
 
-- Maybe, an implementation of the API endpoint natively would be an idea to get independent from the `python-twitter` wrapper
+- [x] An implementation of the API endpoint natively would be an idea to get independent from the `python-twitter` wrapper
+- [ ] Ability to use multiple images in one tweet
+- [ ] Marking media as `possibly_sensitive` to tweet NSFW content and erspect Twitters media policy
 
 ---
 
