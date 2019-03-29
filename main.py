@@ -3,7 +3,6 @@
 import sys
 import argparse
 import logging
-import twitter
 
 import config
 import twrapper
@@ -51,8 +50,8 @@ def init() -> int:
     # credentials
     try:
         twc = twrapper.Twitter(cfg.get('twitter'))
-    except twitter.TwitterError as e:
-        logging.critical('Failed creating twitter session: %s' % e.message)
+    except Exception as e:
+        logging.critical('Failed creating twitter session: {0}'.format(e))
         return 1
 
     # Creating file manager instance
