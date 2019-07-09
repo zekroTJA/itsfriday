@@ -1,2 +1,1 @@
-requests
-requests-oauthlib
+pip install git+https://github.com/zekroTJA/pytter.git

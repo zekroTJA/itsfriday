@@ -3,11 +3,12 @@
 import sys
 import argparse
 import logging
+import pytter
 
 import config
-import twrapper
 import fmgr
 import timer
+import fqueue
 
 
 VERSION = '1.0'
@@ -37,7 +38,10 @@ def init() -> int:
     args = parse_args()
 
     # Setting log level
-    logging.basicConfig(level=(args.log_level * 10))
+    logging.basicConfig(
+        level=(args.log_level * 10), 
+        format='%(asctime)s | %(levelname)s | %(message)s', 
+        datefmt='%Y-%m-%d %H:%M:%S')
 
     # Parsing config or creating a new one if not existent
     cfg = config.init(args.config)
@@ -46,10 +50,21 @@ def init() -> int:
             'Open this config at "%s" and enter your values.' % args.config) 
         return 1
 
+    queue = fqueue.Queue(cfg.get('queue_file').val())
+
     # Creating twitter wrapper instance and testing
     # credentials
+    _creds = cfg.get('twitter')
+    creds = pytter.Credentials(
+        consumer_key=_creds.get('consumer_key').val(),
+        consumer_secret=_creds.get('consumer_secret').val(),
+        access_token_key=_creds.get('access_token_key').val(),
+        access_token_secret=_creds.get('access_token_secret').val())
+
     try:
-        twc = twrapper.Twitter(cfg.get('twitter'))
+        twc = pytter.Client(creds)
+        me = twc.me()
+        logging.info('Logged in as {} ({})'.format(me.username, me.id_str))
     except Exception as e:
         logging.critical('Failed creating twitter session: {0}'.format(e))
         return 1
@@ -57,23 +72,33 @@ def init() -> int:
     # Creating file manager instance
     mgr = fmgr.FileManager(cfg.get('image_files').val())
 
-    def handler() -> int:
+    def handler():
         """
         Handler which picks a random image from the pool
         and posts it to the Twitter timeline.
         """
         try:
-            file = mgr.get_rnd_file()
-            twc.update(cfg.get('message').val(), file)
-            return 0
+            qv = queue.next()
+            if qv:
+                media = qv[0] if len(qv) > 0 else None
+                text  = qv[1] if len(qv) > 1 else None
+                logging.info('picked tweet info from queue')
+            else:
+                media = mgr.get_rnd_file()
+                text  = cfg.get('message').val()
+            return twc.status_update(text=text, media=media)
         except Exception as e:
-            logging.error('tweeting failed: ' + str(e))
-            return 1
+            logging.error('Tweeting failed: ' + str(e))
+            return None
 
     # If flag '--once' was passed, execute the handler once
     # and then exit with the handlers return value
     if args.once:
-        return(handler())
+        t = handler()
+        if t:
+            logging.info('Sent tweet ID: {}'.format(t.id_str))
+            return 0
+        return 1
     
     # Starting the loop waiting for the trigger
     # time.

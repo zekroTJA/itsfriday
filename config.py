@@ -15,7 +15,8 @@ _DEFAULT_CONF = {
         "https://example.com/myimagefile.png",
         "/home/you/icon.png",
         "/home/you/img"
-    ]
+    ],
+    'queue_file': '',
 }
 
 
