@@ -7,6 +7,7 @@
     <!-- <a href="https://dc.zekro.de"><img height="28" src="https://img.shields.io/discord/307084334198816769.svg?style=for-the-badge&logo=discord" /></a>&nbsp; -->
     <!-- <a href="https://github.com/zekroTJA/shinpuru/releases"><img height="28" src="https://img.shields.io/github/tag/zekroTJA/shinpuru.svg?style=for-the-badge"/></a>&nbsp; -->
     <img height="28" src="https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg" />&nbsp;
+    <a href="https://cloud.docker.com/u/zekro/repository/docker/zekro/itsfriday"><img alt="Docker Cloud Automated build" src="https://img.shields.io/docker/cloud/automated/zekro/itsfriday.svg?color=cyan&logo=docker&logoColor=cyan&style=for-the-badge"></a>&nbsp;
     <img height="28" src="https://forthebadge.com/images/badges/built-with-grammas-recipe.svg">
 <br>
 </div>
@@ -54,6 +55,38 @@ After that was successful, run the main.py to generate a config file:
 ```
 $ python3 ./main.py -c myConfig.json
 ```
+
+## Docker
+
+Alternatively, you can use the automatically pre-build Docker images available on [Docker Hub](https://hub.docker.com/r/zekro/itsfriday).
+
+```
+$ docker pull zekro/itsfriday:latest
+```
+
+Then, start up the image. You should bind the data location `/etc/data` and set this in your config file to create a gateway if you want to use local files on your host system to be posted on twitter.
+```
+$ docker run \
+    -v "/etc/itsfriday/config:/etc/config" \
+    -v "/etc/itsfriday/data:/etc/data"
+```
+
+Or when using docker-compose:
+```yaml
+version: '3'
+
+services:
+  # ...
+  
+  itsfriday:
+    image: 'zekro/itsfriday:latest'
+    volumes:
+      - '/etc/itsfriday/config:/etc/config'
+      - '/etc/itsfriday/data:/etc/data'
+    restart: always
+```
+
+## Config
 
 Then, open the config and enter your Twitter API app credentials, the time when the event should fire every friday, a message text *(can be empty)*, and some local file directions *(directly to a file or to a folder containing image files)* or URLs to online images which should be used as pool for the randomly picked images to post.
 ```json
@@ -128,15 +161,6 @@ Now, create an entry to fire your post, for example, every friday at 9 AM:
 ```
 
 It is very important to set the flag **`--once`**, which will not start the timer loop and only fire the event once.
-
----
-
-# Used 3rd-Party-Dependencies
-
-| Dependency | Licence |
-|------------|---------|
-| [kennethreitz/requests](https://github.com/kennethreitz/requests) | [Apache V2.0](https://github.com/kennethreitz/requests/blob/master/LICENSE) |
-| [requests/requests-oauthlib](https://github.com/requests/requests-oauthlib) | [ISC](https://github.com/requests/requests-oauthlib/blob/master/LICENSE) |
 
 ---
 
