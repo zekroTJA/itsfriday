@@ -1,1 +1,1 @@
-pip install git+https://github.com/zekroTJA/pytter.git
+git+https://github.com/zekroTJA/pytter.git
