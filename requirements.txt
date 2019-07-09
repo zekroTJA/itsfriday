@@ -1,2 +1,1 @@
-requests
-requests-oauthlib
+git+https://github.com/zekroTJA/pytter.git
