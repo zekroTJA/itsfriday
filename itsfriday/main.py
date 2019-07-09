@@ -23,6 +23,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', '-c', default='config.json', type=str,
         help='The location of the config. if not existent, a new config file will be created there. (default "./config.json")')
+    parser.add_argument('--queue-file', type=str, help='The queue file location (overrides config if set).')
     parser.add_argument('--once', action='store_const', const=True, default=False, 
         help='If this is passed, no timer loop will be created. A send will be performed and then, '+
              'the script will exit.')
@@ -50,7 +51,8 @@ def init() -> int:
             'Open this config at "%s" and enter your values.' % args.config) 
         return 1
 
-    queue = fqueue.Queue(cfg.get('queue_file').val())
+    queue_file = args.queue_file or cfg.get('queue_file').val()
+    queue = fqueue.Queue(queue_file)
 
     # Creating twitter wrapper instance and testing
     # credentials

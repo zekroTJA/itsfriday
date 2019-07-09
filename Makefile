@@ -1,7 +1,12 @@
-# PY = py -3.7 # for windows - ensure python version 3.7 
-# PY = python3   # for linux
-PY = python3.7 # for linux - ensure python version 3.7
-# PY = python3.8 # for linux - ensure python version 3.8
+PYTHON_WIN = py
+PYTHON_UNX = python3
+
+ifeq ($(OS),Windows_NT)
+	PY = $(PYTHON_WIN)
+else
+	PY = $(PYTHON_UNX)
+endif
+
 
 CONFIG = "$(CURDIR)/config.json"
 
@@ -23,7 +28,7 @@ deps-user:
 	$(PY) -m pip install -U -r --user $(CURDIR)/requirements.txt
 
 debug:
-	$(PY) $(CURDIR)/main.py -c $(CURDIR)/config/private.config.json
+	$(PY) $(CURDIR)/itsfriday/main.py -c $(CURDIR)/config/private.config.json
 
 run:
-	$(PY) $(CURDIR)/main.py -c $(CONFIG)
+	$(PY) $(CURDIR)/itsfriday/main.py -c $(CONFIG)
