@@ -16,7 +16,7 @@
 
 # Why?
 
-Imagine waking up, looking on your phone and noticing: It's finally friday! You are going to work, full of aniticipation to the end of the workday - chilling with some beer or with your freinds on a tasty barbeque...
+Imagine waking up, looking on your phone and noticing: It's finally friday! You are going to work, full of aniticipation to the end of the workday - chilling with some beer or with your friends on a tasty barbeque...
 
 And this tool provides an easy way to spread some of your friday-happiness to your twitter followers! Just enter a collection of carefully picked, happy friday images into the config, create an [API app](https://developer.twitter.com/en/apps), enter your apps credentials and everything is ready to go.
 
