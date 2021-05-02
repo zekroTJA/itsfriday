@@ -1,9 +1,11 @@
 name: 'Auto Post'
 
 on:
-  push:
-    branches:
-      - 'master'
+  schedule:
+    - cron: '0 9 * * 5'
+  # push:
+  #   branches:
+  #     - 'master'
 
 jobs:
   autopost:
