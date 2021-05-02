@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="data/testfiles/itsfriday1.jpg" height="300" />
+    <img src="data/pool/20201218_144633.jpg" height="300" />
     <h1>~ It's Friday! ~</h1>
     <strong>
         The tool for spreading friday-happiness to your Twitter followers!
