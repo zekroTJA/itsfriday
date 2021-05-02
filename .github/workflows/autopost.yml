@@ -1,0 +1,31 @@
+name: 'Auto Post'
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  autopost:
+    name: 'Auto Post'
+    runs-on: 'ubuntu-20.04'
+    steps:
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Post tweet
+        env:
+          TWITTER_CONSUMERKEY: ${{ secrets.TWITTER_CONSUMERKEY }}
+          TWITTER_CONSUMERSECRET: ${{ secrets.TWITTER_CONSUMERSECRET }}
+          TWITTER_ACCESSTOKENKEY: ${{ secrets.TWITTER_ACCESSTOKENKEY }}
+          TWITTER_ACCESSTOKENSECRET: ${{ secrets.TWITTER_ACCESSTOKENSECRET }}
+        run: python3 itsfriday/main.py --once --config config/actions.json
