@@ -1,6 +1,7 @@
 import json
-from os import path
+from os import path, getenv
 from enum import Enum
+
 
 _DEFAULT_CONF = {
     'time': '9:00:00',
@@ -25,7 +26,7 @@ class MapValue:
     MapValue wraps a generic type of value.
     """
     v = None
-    
+
     def __init__(self, v):
         self.v = v
 
@@ -60,6 +61,13 @@ class MapObject:
 
     def __init__(self, m: dict):
         self._m = m
+
+    def set(self, key: str, val):
+        """
+        Sets the passed val to the map
+        with the specified key.
+        """
+        self._m[key] = val
 
     def get(self, key: str) -> MapValue:
         """
@@ -100,5 +108,20 @@ def init(loc: str) -> MapObject:
         _create(loc)
         return None
 
+    res = None
     with open(loc, mode='r', encoding='utf8') as f:
-        return MapObject(json.load(f))
+        res = MapObject(json.load(f))
+
+    res.get('twitter').set('consumer_key', getenv(
+        'TWITTER_CONSUMERKEY', res.get('twitter').get('consumer_key').val()))
+
+    res.get('twitter').set('consumer_secret', getenv(
+        'TWITTER_CONSUMERSECRET', res.get('twitter').get('consumer_secret').val()))
+
+    res.get('twitter').set('access_token_key', getenv(
+        'TWITTER_ACCESSTOKENKEY', res.get('twitter').get('access_token_key').val()))
+
+    res.get('twitter').set('access_token_secret', getenv(
+        'TWITTER_ACCESSTOKENSECRET', res.get('twitter').get('access_token_secret').val()))
+
+    return res

@@ -22,15 +22,16 @@ def parse_args():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', '-c', default='config.json', type=str,
-        help='The location of the config. if not existent, a new config file will be created there. (default "./config.json")')
-    parser.add_argument('--queue-file', type=str, help='The queue file location (overrides config if set).')
-    parser.add_argument('--once', action='store_const', const=True, default=False, 
-        help='If this is passed, no timer loop will be created. A send will be performed and then, '+
-             'the script will exit.')
-    parser.add_argument('--log-level', '-l', default=2, type=int, 
-        help='Set log level of the default logger. (default 1)')
-    parser.add_argument('--version', '-v', action='version', 
-        version=('It\'s Friday! v.%s - © 2019 Ringo Hoffmann (zekro Development)' % VERSION))
+                        help='The location of the config. if not existent, a new config file will be created there. (default "./config.json")')
+    parser.add_argument('--queue-file', type=str,
+                        help='The queue file location (overrides config if set).')
+    parser.add_argument('--once', action='store_const', const=True, default=False,
+                        help='If this is passed, no timer loop will be created. A send will be performed and then, ' +
+                        'the script will exit.')
+    parser.add_argument('--log-level', '-l', default=2, type=int,
+                        help='Set log level of the default logger. (default 1)')
+    parser.add_argument('--version', '-v', action='version',
+                        version=('It\'s Friday! v.%s - © 2019 Ringo Hoffmann (zekro Development)' % VERSION))
     return parser.parse_args()
 
 
@@ -40,15 +41,15 @@ def init() -> int:
 
     # Setting log level
     logging.basicConfig(
-        level=(args.log_level * 10), 
-        format='%(asctime)s | %(levelname)s | %(message)s', 
+        level=(args.log_level * 10),
+        format='%(asctime)s | %(levelname)s | %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S')
 
     # Parsing config or creating a new one if not existent
     cfg = config.init(args.config)
     if cfg == None:
-        logging.critical('Config file was not found. A default config file has been generated. '+
-            'Open this config at "%s" and enter your values.' % args.config) 
+        logging.critical('Config file was not found. A default config file has been generated. ' +
+                         'Open this config at "%s" and enter your values.' % args.config)
         return 1
 
     queue_file = args.queue_file or cfg.get('queue_file').val()
@@ -83,11 +84,11 @@ def init() -> int:
             qv = queue.next()
             if qv:
                 media = qv[0] if len(qv) > 0 else None
-                text  = qv[1] if len(qv) > 1 else None
+                text = qv[1] if len(qv) > 1 else None
                 logging.info('picked tweet info from queue')
             else:
                 media = mgr.get_rnd_file()
-                text  = cfg.get('message').val()
+                text = cfg.get('message').val()
             return twc.status_update(text=text, media=media)
         except Exception as e:
             logging.error('Tweeting failed: ' + str(e))
@@ -101,7 +102,7 @@ def init() -> int:
             logging.info('Sent tweet ID: {}'.format(t.id_str))
             return 0
         return 1
-    
+
     # Starting the loop waiting for the trigger
     # time.
     logging.info('Starting timer...')
