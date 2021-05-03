@@ -24,6 +24,10 @@ Then, you can define a time when a randomly picked image out of the defined pool
 
 ---
 
+# Contribute Images
+
+Just [fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this repository and add your desired image to the `data/pool` directory. After that, just create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) with your changes. It's that easy! 😉
+
 # Setup
 
 ## Requirements
@@ -161,14 +165,6 @@ Now, create an entry to fire your post, for example, every friday at 9 AM:
 ```
 
 It is very important to set the flag **`--once`**, which will not start the timer loop and only fire the event once.
-
----
-
-# Ideas and To-Do
-
-- [x] An implementation of the API endpoint natively would be an idea to get independent from the `python-twitter` wrapper
-- [ ] Ability to use multiple images in one tweet
-- [ ] Marking media as `possibly_sensitive` to tweet NSFW content and erspect Twitters media policy
 
 ---
 
