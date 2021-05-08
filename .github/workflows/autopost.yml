@@ -2,8 +2,8 @@ name: 'Auto Post'
 
 on:
   schedule:
-    - cron: '0 11 * 4-10 5'       # utc+2 during german summer time
-    - cron: '0 10 * 11-12,1-3 5'  # utc+1 during german winter time
+    - cron: '0 7 * 4-10 5'       # utc+2 during german summer time
+    - cron: '0 8 * 11-12,1-3 5'  # utc+1 during german winter time
   # push:
   #   branches:
   #     - 'master'
