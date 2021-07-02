@@ -2,6 +2,7 @@ from typing import List
 import logging
 from os import path
 
+
 class Queue:
 
     def __init__(self, file_loc: str):
@@ -22,5 +23,5 @@ class Queue:
                 f.write('\n'.join(lines[1:]))
             return None if len(d) < 1 else d
         except Exception as e:
-            logging.error('Failed getting queue entry: ' + str(e)) 
+            logging.error('Failed getting queue entry: ' + str(e))
             return None

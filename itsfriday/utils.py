@@ -1,3 +1,4 @@
+import logging
 import os
 import urllib
 import requests
@@ -6,8 +7,8 @@ import mimetypes
 
 
 class FileInfo:
-    handler        = None
-    size: int      = None
+    handler = None
+    size: int = None
     mime_type: str = None
     file_name: str = None
     full_path: str = None
@@ -27,7 +28,8 @@ class FileInfo:
         self.size = file_handler.tell()
         try:
             file_handler.seek(0)
-        except:
+        except Exception as e:
+            logging.error(e)
             pass
 
         self.mime_type = mimetypes.guess_type(self.file_name)[0]
@@ -84,7 +86,8 @@ def file_from_url(url: str):
     res = requests.get(url, stream=True)
 
     if not res.ok:
-        raise Exception('request failed with status code {0}'.format(res.status_code))
+        raise Exception(
+            'request failed with status code {0}'.format(res.status_code))
 
     for chunk in res.iter_content(chunk_size=CHUNK_SIZE):
         file.write(chunk)
@@ -222,17 +225,17 @@ def check_upload_compatibility(file_info: FileInfo) -> int:
     if file_info.mime_type in IMAGE_TYPES:
         if file_info.size > IMAGE_TYPE_MAXSIZE.n_bytes:
             raise Exception('image file can not be larger than {0} MiB'
-                .format(str(IMAGE_TYPE_MAXSIZE)))
+                            .format(str(IMAGE_TYPE_MAXSIZE)))
         return 3
 
     if file_info.mime_type in LARGE_IMAGE_TYPES:
         if file_info.size > LARGE_IMAGE_TYPE_MAXSIZE.n_bytes:
             raise Exception('image file can not be larger than {0} MiB'
-                .format(str(LARGE_IMAGE_TYPE_MAXSIZE)))
+                            .format(str(LARGE_IMAGE_TYPE_MAXSIZE)))
 
     if file_info.mime_type in VIDEO_TYPES:
         if file_info.size > VIDEO_TYPE_MAXSIZE.n_bytes:
             raise Exception('image file can not be larger than {0} MiB'
-                .format(str(VIDEO_TYPE_MAXSIZE)))
+                            .format(str(VIDEO_TYPE_MAXSIZE)))
 
     return 1

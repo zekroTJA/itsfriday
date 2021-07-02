@@ -22,16 +22,23 @@ def parse_args():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', '-c', default='config.json', type=str,
-                        help='The location of the config. if not existent, a new config file will be created there. (default "./config.json")')
+                        help='The location of the config. if not existent, '
+                             'a new config file will be created there. '
+                             '(default "./config.json")')
     parser.add_argument('--queue-file', type=str,
-                        help='The queue file location (overrides config if set).')
-    parser.add_argument('--once', action='store_const', const=True, default=False,
-                        help='If this is passed, no timer loop will be created. A send will be performed and then, ' +
-                        'the script will exit.')
+                        help='The queue file location '
+                             '(overrides config if set).')
+    parser.add_argument('--once', action='store_const',
+                        const=True, default=False,
+                        help='If this is passed, no timer loop will be '
+                             'created. A send will be performed and then, '
+                             'the script will exit.')
     parser.add_argument('--log-level', '-l', default=2, type=int,
-                        help='Set log level of the default logger. (default 1)')
+                        help='Set log level of the default logger. '
+                             '(default 1)')
     parser.add_argument('--version', '-v', action='version',
-                        version=('It\'s Friday! v.%s - © 2019 Ringo Hoffmann (zekro Development)' % VERSION))
+                        version=('It\'s Friday! v.%s - © 2019 Ringo Hoffmann '
+                                 '(zekro Development)' % VERSION))
     return parser.parse_args()
 
 
@@ -47,9 +54,11 @@ def init() -> int:
 
     # Parsing config or creating a new one if not existent
     cfg = config.init(args.config)
-    if cfg == None:
-        logging.critical('Config file was not found. A default config file has been generated. ' +
-                         'Open this config at "%s" and enter your values.' % args.config)
+    if cfg is None:
+        logging.critical('Config file was not found. A default '
+                         'config file has been generated. '
+                         'Open this config at "%s" and enter your '
+                         'values.' % args.config)
         return 1
 
     queue_file = args.queue_file or cfg.get('queue_file').val()

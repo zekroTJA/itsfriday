@@ -12,18 +12,18 @@ class FileManager:
 
     def __init__(self, locations: list):
         self._locs = locations
-    
+
     def index_files(self):
         self._files = []
-        for l in self._locs:
-            if _RE_URL.match(l):
-                self._files.append(l)
-            elif os.path.isfile(l):
-                self._files.append(l)
-            elif os.path.isdir(l):
-                self._files.extend(["%s/%s" % (l, f) for f in os.listdir(l) 
-                    if os.path.isfile(os.path.join(l, f))])
-                
+        for loc in self._locs:
+            if _RE_URL.match(loc):
+                self._files.append(loc)
+            elif os.path.isfile(loc):
+                self._files.append(loc)
+            elif os.path.isdir(loc):
+                self._files.extend(["%s/%s" % (loc, f) for f in os.listdir(loc)
+                                    if os.path.isfile(os.path.join(loc, f))])
+
     def get_rnd_file(self, index_before=True) -> str:
         if index_before:
             self.index_files()

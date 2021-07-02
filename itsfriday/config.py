@@ -1,6 +1,5 @@
 import json
 from os import path, getenv
-from enum import Enum
 
 
 _DEFAULT_CONF = {
@@ -35,7 +34,7 @@ class MapValue:
         Returns if the inner value is
         equal to None.
         """
-        return self.v == None
+        return self.v is None
 
     def get(self, key: str):
         """
@@ -113,15 +112,19 @@ def init(loc: str) -> MapObject:
         res = MapObject(json.load(f))
 
     res.get('twitter').set('consumer_key', getenv(
-        'TWITTER_CONSUMERKEY', res.get('twitter').get('consumer_key').val()))
+        'TWITTER_CONSUMERKEY',
+        res.get('twitter').get('consumer_key').val()))
 
     res.get('twitter').set('consumer_secret', getenv(
-        'TWITTER_CONSUMERSECRET', res.get('twitter').get('consumer_secret').val()))
+        'TWITTER_CONSUMERSECRET',
+        res.get('twitter').get('consumer_secret').val()))
 
     res.get('twitter').set('access_token_key', getenv(
-        'TWITTER_ACCESSTOKENKEY', res.get('twitter').get('access_token_key').val()))
+        'TWITTER_ACCESSTOKENKEY',
+        res.get('twitter').get('access_token_key').val()))
 
     res.get('twitter').set('access_token_secret', getenv(
-        'TWITTER_ACCESSTOKENSECRET', res.get('twitter').get('access_token_secret').val()))
+        'TWITTER_ACCESSTOKENSECRET',
+        res.get('twitter').get('access_token_secret').val()))
 
     return res
