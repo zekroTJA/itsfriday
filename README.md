@@ -4,11 +4,7 @@
     <strong>
         The tool for spreading friday-happiness to your Twitter followers!
     </strong><br><br>
-    <!-- <a href="https://dc.zekro.de"><img height="28" src="https://img.shields.io/discord/307084334198816769.svg?style=for-the-badge&logo=discord" /></a>&nbsp; -->
-    <!-- <a href="https://github.com/zekroTJA/shinpuru/releases"><img height="28" src="https://img.shields.io/github/tag/zekroTJA/shinpuru.svg?style=for-the-badge"/></a>&nbsp; -->
-    <img height="28" src="https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg" />&nbsp;
-    <a href="https://cloud.docker.com/u/zekro/repository/docker/zekro/itsfriday"><img alt="Docker Cloud Automated build" src="https://img.shields.io/docker/cloud/automated/zekro/itsfriday.svg?color=cyan&logo=docker&logoColor=cyan&style=for-the-badge"></a>&nbsp;
-    <img height="28" src="https://forthebadge.com/images/badges/built-with-grammas-recipe.svg">
+    <a href="https://github.com/zekroTJA/itsfriday/actions/workflows/autopost.yml"><img src="https://github.com/zekroTJA/itsfriday/actions/workflows/autopost.yml/badge.svg"/></a>&nbsp;<a href="https://github.com/zekroTJA/itsfriday/releases"><img src="https://img.shields.io/github/v/release/zekrotja/itsfriday?include_prereleases"></a>
 <br>
 </div>
 
