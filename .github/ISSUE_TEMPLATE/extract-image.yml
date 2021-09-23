@@ -1,0 +1,27 @@
+name: Contribute Image
+description: Submit an image via the content of an issue.
+labels:
+  - contribute-image
+assignees:
+  - zekrotja
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## How does it work?
+
+        You can simply suggest an image to be added via the following text area. Either directly enter the 
+        link to the image or embed it into an image markdown tag (`![](<url>)`).
+
+        > **Attention**  
+        > The image URL **must** end with the image extension!
+
+        After that, the image is reviewed by @zekroTJA to be added to the image pool.
+
+  - type: textarea
+    id: image
+    attributes:
+      label: Image Link
+      description: Here you can paste the image tag or image URL.
+      placeholder: "![](https://link-to.the/image.png)"
+      
