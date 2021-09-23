@@ -1,5 +1,6 @@
 name: Contribute Image
 description: Submit an image via the content of an issue.
+title: Image Contribution
 labels:
   - contribute-image
 assignees:
