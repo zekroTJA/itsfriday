@@ -22,7 +22,9 @@ Then, you can define a time when a randomly picked image out of the defined pool
 
 # Contribute Images
 
-Just [fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this repository and add your desired image to the `data/pool` directory. After that, just create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) with your changes. It's that easy! 😉
+You can just create an issue with [**this template**](https://github.com/zekroTJA/itsfriday/issues/new?assignees=zekrotja&labels=contribute-image&template=extract-image.yml&title=Image+Contribution) and put in your image link there. After that, the image will be reviewed and then added to the repository, if accepted.
+
+Otherwise, if you want to be part of the contributors list, just [fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this repository and add your desired image to the `data/pool` directory. After that, just create a [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) with your changes. It's that easy! 😉
 
 # Setup
 
