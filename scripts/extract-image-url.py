@@ -1,7 +1,7 @@
 import re
 import sys
 
-RX_IMAGE = r'(?:!\[[\w\s\d]*\]\()?(https:\/\/[\w\d\-\_\.\?#&=\/]+)\)?'
+RX_IMAGE = r'.*(?:!\[[\w\s\d]*\]\()?(https:\/\/[\w\d\-\_\.\?#&=\/]+)\)?'
 
 
 def main():

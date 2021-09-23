@@ -29,7 +29,8 @@ jobs:
           CONTENT: ${{ github.event.issue.body }}
           AUTHOR_LOGIN: ${{ github.event.issue.user.login }}
         run: |
-          image_url=$(python3 scripts/extract-image-url.py $CONTENT)
+          echo "$CONTENT"
+          image_url=$(python3 scripts/extract-image-url.py "$CONTENT")
           extension=$(python3 scripts/get-extension.py $image_url)
           uid=$(date +%s%N)
           file_name=${AUTHOR_LOGIN}_${uid}.${extension}
